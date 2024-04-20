@@ -47,17 +47,12 @@ class ProfileController extends Controller
     {
         $updatedData = User::where('id', Auth::user()->id)
           ->update([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'patronymic' => $request->patronymic,
             'email' => $request->email,
             'position' => $request->position,
             'departament' => $request->departament,
             'about' => $request->about,
             'phone' => $request->phone,
             'telegram' => $request->telegram,
-            'is_confirmed' => $request->is_confirmed,
-            'is_ready' => $request->is_ready,
             'date_birth' =>$request->date_birth,
           ]);
 
