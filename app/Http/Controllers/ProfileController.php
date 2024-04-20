@@ -32,7 +32,7 @@ class ProfileController extends Controller
             "is_ready",
             "date_birth",
           )
-          ->get();
+          ->first();
 
           return response()->json($profileData);
     }
