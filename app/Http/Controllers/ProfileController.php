@@ -57,7 +57,7 @@ class ProfileController extends Controller
         'about' => $request->about,
         'phone' => $request->phone,
         'telegram' => $request->telegram,
-        'date_birth' => Carbon::parse($request->date_birth)->format('Y-m-d'),
+        'date_birth' => Carbon::parse($request->date_birth)->addDay()->format('Y-m-d'),
       ]);
 
     return response()->json($updatedData);
