@@ -33,7 +33,21 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                //
+                 Forms\Components\TextInput::make('email')
+                     ->required(),
+                 Forms\Components\TextInput::make('password')
+                     ->required(),
+                 Forms\Components\TextInput::make('name')
+                     ->required(),
+                 Forms\Components\TextInput::make('surname'),
+                 Forms\Components\TextInput::make('patronymic'),
+                 Forms\Components\TextInput::make('position'),
+                 Forms\Components\TextInput::make('departament'),
+                 Forms\Components\Textarea::make('about'),
+                 Forms\Components\TextInput::make('phone'),
+                 Forms\Components\TextInput::make('telegram'),
+                 Forms\Components\Checkbox::make('is_confirmed'),
+                 Forms\Components\Checkbox::make('is_ready'),
             ]);
     }
 
@@ -47,14 +61,28 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('surname')
                     ->label('Фамилия')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('paytronymic')
+                Tables\Columns\TextColumn::make('patronymic')
                     ->label('Отчество')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('postition')
-                    ->label('Доступ')
+              Tables\Columns\TextColumn::make('email')
+                    ->label('Почта')
                     ->searchable(),
-                CheckboxColumn::make('is_confirmed')
-                    ->label('Доступ'),
+              Tables\Columns\TextColumn::make('departament')
+                  ->label('Отдел')
+                  ->searchable(),
+              Tables\Columns\TextColumn::make('position')
+                  ->label('Должность')
+                  ->searchable(),
+              Tables\Columns\TextColumn::make('phone')
+                  ->label('Телефон')
+                  ->searchable(),
+              Tables\Columns\TextColumn::make('telegram')
+                    ->label('Телеграм')
+                    ->searchable(),
+              CheckboxColumn::make('is_confirmed')
+                    ->label('Верифицирован'),
+              CheckboxColumn::make('is_ready')
+                  ->label('Готовность'),
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([

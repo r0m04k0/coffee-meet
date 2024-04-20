@@ -33,13 +33,13 @@ RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.1
 COPY cron/crontab /var/spool/cron/crontabs/root
 RUN chmod 0600 /var/spool/cron/crontabs/root
 
-COPY start /usr/local/bin/start
+COPY start "/usr/local/bin/start"
 COPY nginx /etc/nginx
 COPY supervisor /etc/supervisor
 COPY php/php.ini /etc/php/8.1/cli/conf.d/99-php.ini
 COPY php/php.ini /etc/php/8.1/fpm/conf.d/99-php.ini
 
-RUN chmod +x /usr/local/bin/start
+RUN chmod +x "/usr/local/bin/start"
 
 # USER www-data
 EXPOSE 8000
