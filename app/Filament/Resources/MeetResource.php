@@ -29,15 +29,12 @@ class MeetResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Встречи';
+
     public static function canCreate(): bool
     {
         return false;
     }
-
-//    public static function canEdit(): bool
-//    {
-//        return false;
-//    }
 
     public static function form(Form $form): Form
     {
@@ -62,7 +59,7 @@ class MeetResource extends Resource
                     ->label('Длительность встречи'),
                 Tables\Columns\IconColumn::make('is_done')
                     ->boolean()
-                    ->label('Встреча завершилась'),
+                    ->label('Проведена'),
                 Tables\Columns\IconColumn::make('is_online')
                     ->boolean()
                     ->label('Онлайн'),

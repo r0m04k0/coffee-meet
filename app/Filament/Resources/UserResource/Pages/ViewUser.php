@@ -13,8 +13,6 @@ class ViewUser extends ViewRecord
 {
     protected static string $resource = UserResource::class;
 
-
-
     protected function getHeaderActions(): array
     {
         return [
@@ -27,10 +25,10 @@ class ViewUser extends ViewRecord
         return $infolist
             ->schema([
                  Section::make([
-                    Infolists\Components\TextEntry::make('email')->label('Почта'),
                     Infolists\Components\TextEntry::make('name')->label('Имя'),
                     Infolists\Components\TextEntry::make('surname')->label('Фамилия'),
                      Infolists\Components\TextEntry::make('patronymic')->label('Отчество'),
+                    Infolists\Components\TextEntry::make('email')->label('Почта'),
                      Infolists\Components\TextEntry::make('date_birth')->label('Дата рождения'),
                     Infolists\Components\TextEntry::make('position')->label('Должность'),
                      Infolists\Components\TextEntry::make('departament')->label('Отдел'),
@@ -43,7 +41,7 @@ class ViewUser extends ViewRecord
                      Infolists\Components\IconEntry::make('is_ready')
                          ->boolean()
                          ->label('Готов к встрече'),
-                     ])
+                     ])->columns(3)
             ]);
     }
 }

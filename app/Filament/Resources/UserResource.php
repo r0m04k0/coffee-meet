@@ -30,6 +30,8 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Сотрудники';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -41,17 +43,17 @@ class UserResource extends Resource
                      ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                      ->dehydrated(fn ($state) => filled($state))
                      ->required(fn (string $context): bool => $context === 'create'),
-                 Forms\Components\TextInput::make('name')
+                 Forms\Components\TextInput::make('name')->label('Имя')
                      ->required(),
-                 Forms\Components\TextInput::make('surname'),
-                 Forms\Components\TextInput::make('patronymic'),
-                 Forms\Components\TextInput::make('position'),
-                 Forms\Components\TextInput::make('departament'),
-                 Forms\Components\Textarea::make('about'),
-                 Forms\Components\TextInput::make('phone'),
-                 Forms\Components\TextInput::make('telegram'),
-                 Forms\Components\Checkbox::make('is_confirmed'),
-                 Forms\Components\Checkbox::make('is_ready'),
+                 Forms\Components\TextInput::make('surname')->label('Фамилия'),
+                 Forms\Components\TextInput::make('patronymic')->label('Отчество'),
+                 Forms\Components\TextInput::make('position')->label('Должность'),
+                 Forms\Components\TextInput::make('departament')->label('Отдел'),
+                 Forms\Components\Textarea::make('about')->label('О себе'),
+                 Forms\Components\TextInput::make('phone')->label('Телефон'),
+                 Forms\Components\TextInput::make('telegram')->label('Телеграм'),
+                 Forms\Components\Checkbox::make('is_confirmed')->label('Верифицирован'),
+                 Forms\Components\Checkbox::make('is_ready')->label('Готовность'),
             ]);
     }
 
