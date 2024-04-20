@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::post('/logout', [AuthController::class, 'logout']);
   Route::get('/get-profile-info', [ProfileController::class, 'getProfileInfo']);
   Route::post('/update-profile-info', [ProfileController::class, 'updateProfile']);
+  Route::post('/change-readiness', [UserController::class, 'changeReadiness']);
 });
 
 Route::post('/register', [AuthController::class, 'register']);
