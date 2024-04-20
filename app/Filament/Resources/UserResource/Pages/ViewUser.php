@@ -25,10 +25,17 @@ class ViewUser extends ViewRecord
     {
         return $infolist
             ->schema([
-                Infolists\Components\TextEntry::make('name'),
                 Infolists\Components\TextEntry::make('email'),
-                Infolists\Components\TextEntry::make('patronymic')
-                    ->columnSpanFull(),
+                Infolists\Components\TextEntry::make('name'),
+                Infolists\Components\TextEntry::make('surname'),
+                Infolists\Components\TextEntry::make('patronymic'),
+                 Infolists\Components\TextEntry::make('position'),
+                 Infolists\Components\TextEntry::make('departament'),
+                 Infolists\Components\TextEntry::make('about'),
+                 Infolists\Components\TextEntry::make('phone'),
+                 Infolists\Components\TextEntry::make('telegram'),
+                 Infolists\Components\TextEntry::make('is_confirmed'),
+                 Infolists\Components\TextEntry::make('is_ready'),
             ]);
     }
 }

@@ -22,6 +22,7 @@ use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\CheckboxColumn;
+use Illuminate\Support\Facades\Hash;
 
 class UserResource extends Resource
 {
@@ -36,7 +37,10 @@ class UserResource extends Resource
                  Forms\Components\TextInput::make('email')
                      ->required(),
                  Forms\Components\TextInput::make('password')
-                     ->required(),
+                     ->password()
+                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                     ->dehydrated(fn ($state) => filled($state))
+                     ->required(fn (string $context): bool => $context === 'create'),
                  Forms\Components\TextInput::make('name')
                      ->required(),
                  Forms\Components\TextInput::make('surname'),
