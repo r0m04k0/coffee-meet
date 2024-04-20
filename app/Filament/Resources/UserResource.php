@@ -68,6 +68,9 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('patronymic')
                     ->label('Отчество')
                     ->searchable(),
+              Tables\Columns\TextColumn::make('date_birth')
+                  ->label('Дата рождения')
+                  ->searchable(),
               Tables\Columns\TextColumn::make('email')
                     ->label('Почта')
                     ->searchable(),

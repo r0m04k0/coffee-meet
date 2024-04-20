@@ -31,6 +31,7 @@ class UserFactory extends Factory
             'telegram'          => 't.me/'.fake()->word(),
             'is_confirmed'      => true,
             'is_ready'          => true,
+            'date_birth'        => fake()->date(),
             'email'             => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password'          => Hash::make('password'),
