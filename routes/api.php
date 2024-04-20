@@ -7,6 +7,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::middleware('auth:sanctum')->group(function () {
   });
 
   Route::post('/logout', [AuthController::class, 'logout']);
+  Route::post('/get-profile-info', [ProfileController::class, 'getProfileInfo']);
 });
 
 Route::post('/register', [AuthController::class, 'register']);
