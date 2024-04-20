@@ -24,5 +24,13 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('password'),
             ]
         );
+
+        User::factory(10)->create();
+
+        $this->call([
+            DurationSeeder::class,
+            FeedbackMeetSeeder::class,
+            MeetSeeder::class,
+        ]);
     }
 }
