@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('meets', function (Blueprint $table) {
             $table->id();
             $table->dateTime('date_and_time')->nullable();
-            $table->boolean('is_done')->default(false);;
-            $table->boolean('is_online')->default(false);;
+            $table->boolean('is_done')->default(false);
+            $table->boolean('is_online')->default(false);
             $table->boolean('is_confirmed')->default(false);
             $table->foreignId('duration_id')->nullable();
             $table->dateTime('1date_and_time')->nullable();

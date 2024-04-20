@@ -85,7 +85,8 @@ class UserResource extends Resource
                     ->searchable(),
               CheckboxColumn::make('is_confirmed')
                     ->label('Верифицирован'),
-              CheckboxColumn::make('is_ready')
+              Tables\Columns\IconColumn::make('is_ready')
+                  ->boolean()
                   ->label('Готовность'),
             ])
             ->defaultSort('created_at', 'desc')
