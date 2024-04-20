@@ -29,7 +29,8 @@ class ProfileController extends Controller
             "phone",
             "telegram",
             "is_confirmed",
-            "is_ready"
+            "is_ready",
+            "date_birth",
           )
           ->get();
 
@@ -57,6 +58,7 @@ class ProfileController extends Controller
             'telegram' => $request->telegram,
             'is_confirmed' => $request->is_confirmed,
             'is_ready' => $request->is_ready,
+            'date_birth' =>$request->date_birth,
           ]);
 
         return response()->json($updatedData);
