@@ -52,8 +52,10 @@ class MeetResource extends Resource
                     ->searchable()
                     ->label('Дата и время'),
                     Tables\Columns\TextColumn::make('first_user.email')
-                    ->label('Первый сотрудник'),
+                    ->label('Первый сотрудник')
+                        ->searchable(),
                 Tables\Columns\TextColumn::make('second_user.email')
+                    ->searchable()
                     ->label('Второй сотрудник'),
                 Tables\Columns\TextColumn::make('final_duration.duration')
                     ->placeholder('Пока не выбрано время')

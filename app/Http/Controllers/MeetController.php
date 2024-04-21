@@ -53,6 +53,12 @@ class MeetController extends Controller
             ->orderBy('created_at', 'desc')
             ->first();
     }
+
+    /**
+     * Обработка выбранной информации встречи
+     *
+     * @return JsonResponse
+     */
     public function confirmMeet(Request $request): JsonResponse
     {
         $request->validate([

@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\FeedbackMeetController;
 use App\Http\Controllers\MeetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::post('/change-readiness', [UserController::class, 'changeReadiness']);
   Route::get('/meet', [MeetController::class, 'getMeetInfo']);
   Route::post('/meet', [MeetController::class, 'confirmMeet']);
+  Route::post('/feedback', [FeedbackMeetController::class, 'storeFeedback']);
 
 });
 

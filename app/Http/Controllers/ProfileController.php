@@ -50,6 +50,15 @@ class ProfileController extends Controller
    */
   public function updateProfile(Request $request): JsonResponse
   {
+      $request->validate([
+             'position'     => 'required|string',
+             'departament'  => 'required|string',
+             'about'        => 'required|string',
+             'phone'        => 'required|string',
+             'telegram'     => 'required|string',
+             'date_birth'   => 'required|string',
+         ]);
+
     $updatedData = User::where('id', Auth::user()->id)
       ->update([
         'position' => $request->position,
