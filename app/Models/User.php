@@ -45,6 +45,7 @@ class User extends Authenticatable implements FilamentUser
         'telegram',
         'is_confirmed',
         'is_ready',
+        'avatar',
     ];
 
     /**

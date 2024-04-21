@@ -5,9 +5,6 @@ use App\Http\Controllers\FeedbackMeetController;
 use App\Http\Controllers\MeetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -35,8 +32,9 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::get('/meet', [MeetController::class, 'getMeetInfo']);
   Route::post('/meet', [MeetController::class, 'confirmMeet']);
   Route::post('/feedback', [FeedbackMeetController::class, 'storeFeedback']);
-
 });
+
+Route::post('/upload/{user_id}', [ProfileController::class, 'uploadAvatar']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
