@@ -32,12 +32,19 @@ class FeedbackMeetController extends Controller
 
         if ($meet->first_user->id == $user->id) {
             $meet->update([
-                  'first_feedback_meet_id' => $feedback->id
+                  'first_feedback_meet_id' => $feedback->id,
               ]);
         }
         else if ($meet->second_user->id == $user->id) {
             $meet->update([
-                  'second_feedback_meet_id' => $feedback->id
+                  'second_feedback_meet_id' => $feedback->id,
+              ]);
+        }
+
+        if ($meet->first_feedback_meet_id && $meet->second_feedback_meet_id) {
+            $meet->update([
+                  'is_done' => true,
+                  'is_archive' => true
               ]);
         }
 

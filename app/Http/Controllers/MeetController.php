@@ -93,7 +93,7 @@ class MeetController extends Controller
                     $meet->first_is_online == $meet->second_is_online
                 ) {
                     $meet->update([
-                          'duration' => $duration ? $duration->id : null,
+                          'duration' => $duration->id,
                           'date_and_time' => $date_and_time,
                           'is_online' => $is_online,
                           'is_confirmed' => true
@@ -103,7 +103,7 @@ class MeetController extends Controller
         }
         else if ($meet->second_user->id == $user->id) {
             $meet->update([
-                  'second_duration_id' => $duration ? $duration->id : null,
+                  'second_duration_id' => $duration->id,
                   'second_date_and_time' => $date_and_time,
                   'second_is_online' => $is_online,
                   'second_is_confirmed' => true
