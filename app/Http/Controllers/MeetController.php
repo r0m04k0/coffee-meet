@@ -58,15 +58,66 @@ class MeetController extends Controller
         $request->validate([
             'duration'      => 'required|string',
             'date_and_time' => 'required|string',
-            'is_online'     => 'required|bool',
+            'is_online'     => 'required|string',
         ]);
 
-        $updatedData = $this->getActiveMeet()->update([
-            'duration'      => Duration::where('duration', $request->duration)->first()->id,
-            'date_and_time' => Carbon::parse($request->date_and_time),
-            'is_online'     => $request->is_online,
-        ]);
+        $user = Auth::user();
+        $meet = $this->getActiveMeet();
 
-        return response()->json($updatedData);
+        if (! $meet) {
+            return response()->json(null);
+        }
+
+        $duration = Duration::where('duration', $request->duration)->first();
+        $date_and_time = Carbon::parse($request->date_and_time);
+        $is_online = boolval($request->is_online);
+
+        // Для первого пользователя
+        if ($meet->first_user()->id == $user->id) {
+            $meet->update([
+                  'first_duration_id' => $duration ? $duration->id : null,
+                  'first_date_and_time' => $date_and_time,
+                  'first_is_online' => $is_online,
+                  'first_is_confirmed' => true
+              ]);
+            if ($meet->second_is_confirmed) {
+                if (
+                    $meet->first_duration_id == $meet->second_duration_id &&
+                    $meet->first_date_and_time == $meet->second_date_and_time &&
+                    $meet->first_is_online == $meet->second_is_online
+                ) {
+                    $meet->update([
+                          'duration' => $duration ? $duration->id : null,
+                          'date_and_time' => $date_and_time,
+                          'is_online' => $is_online,
+                          'is_confirmed' => true
+                      ]);
+                }
+            }
+        }
+        else if ($meet->second_user()->id == $user->id) {
+            $meet->update([
+                  'second_duration_id' => $duration ? $duration->id : null,
+                  'second_date_and_time' => $date_and_time,
+                  'second_is_online' => $is_online,
+                  'second_is_confirmed' => true
+              ]);
+            if ($meet->first_is_confirmed) {
+                if (
+                    $meet->first_duration_id == $meet->second_duration_id &&
+                    $meet->first_date_and_time == $meet->second_date_and_time &&
+                    $meet->first_is_online == $meet->second_is_online
+                ) {
+                    $meet->update([
+                          'duration' => $duration ? $duration->id : null,
+                          'date_and_time' => $date_and_time,
+                          'is_online' => $is_online,
+                          'is_confirmed' => true
+                      ]);
+                }
+            }
+        }
+
+        return response()->json(new MeetResource($meet));
     }
 }
