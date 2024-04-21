@@ -9,15 +9,15 @@
 
 [Документация и полное описание возможностей находится здесь](documentation)
 
-## Installation
+## Установка
 
 ```bash
-git clone git@github.com:enterprise-it-ru/{PROJECT_NAME}.git {PROJECT_NAME}.local
-cd {PROJECT_NAME}.local
+git clone
+cd
 composer install
 ```
 
-Copy the .env file and change the database connection settings
+Скопируйте .env файл и измените настройки подключения к БД, если это необходимо
 
 ```bash
 cp .env.example .env
@@ -28,33 +28,41 @@ php artisan key:generate
 ```
 
 ```bash
-npm install
+php artisan storage:link
 ```
 
+Провести миграции БД:
 ```bash
-npm run build
+php artisan migrate
 ```
 
-For development mode, use the command
-
+Для наполнения базы тестовыми данными необходимо запустить сидер:
 ```bash
-npm run dev
+php artisan db:seed
 ```
 
 ## Установка в докере
 
-Если нет make, то взять команды из makefile и выполнять напрямую
+Для проксирования запросов в Docker используется traefic.
+Чтобы запустить, необходимо перейти в папку ./traefic и выполнить команду
+```
+docker compose up -d
+```
+Только после этого, можно запускать основной образ.
 
-Запуск контейнера.
+Если нет make, то взять команды из makefile и выполнять напрямую
+Запуск контейнера:
 
 ```bash
 make up
 ```
 
-Открыть консоль:
+Чтобы открыть консоль:
 
 ```
 make shell
 ```
 
 В консоли уже можно продолжить обычную установку с шага composer install
+
+
