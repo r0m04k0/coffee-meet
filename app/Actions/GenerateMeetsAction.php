@@ -41,11 +41,11 @@ class GenerateMeetsAction
                 ]);
     
                 // Устанавливаем статус is_ready в false у двух пользователей, которые только что встретились
-                User::where('id', $user1)->orWhere('id', $user2)->update(['is_ready' => false]);
+                User::where('id', $user1)->orWhere('id', $user2)->update(['is_ready' => true]);
             
             // Если следующего пользователя нет (нечетное число пользователей), то просто устанавливаем is_ready в false у последнего пользователя
             } else if ($user2 === null) {
-                User::where('id', $user1)->update(['is_ready' => false]);
+                User::where('id', $user1)->update(['is_ready' => true]);
             
             // Если следующий пользователь есть, но встречи с текущим пользователе уже были, то просто переходим к следующей паре пользователей
             } else {

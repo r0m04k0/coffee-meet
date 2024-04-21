@@ -75,7 +75,7 @@ class MeetController extends Controller
         }
 
         $duration = Duration::where('duration', $request->duration)->first();
-        $date_and_time = Carbon::parse($request->date_and_time);
+        $date_and_time = Carbon::parse($request->date_and_time)->format('Y-m-d H:i');
         $is_online = boolval($request->is_online);
 
         // Для первого пользователя
@@ -84,7 +84,7 @@ class MeetController extends Controller
                   'first_duration_id' => $duration ? $duration->id : null,
                   'first_date_and_time' => $date_and_time,
                   'first_is_online' => $is_online,
-                  'first_is_confirmed' => true
+                  'first_is_confirmed' => true,
               ]);
             if ($meet->second_is_confirmed) {
                 if (
@@ -136,4 +136,5 @@ class MeetController extends Controller
         ]);
         return response()->json(new MeetResource($meet));
     }
+
 }
