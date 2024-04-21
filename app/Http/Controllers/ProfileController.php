@@ -44,27 +44,6 @@ class ProfileController extends Controller
           return response()->json($profileData);
     }
 
-    /**
-     * Обновление данных профиля
-     *
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function updateProfile(Request $request): JsonResponse
-    {
-      $updatedData = User::where('id', Auth::user()->id)
-        ->update([  
-          'position' => $request->position,
-          'departament' => $request->departament,
-          'about' => $request->about,
-          'phone' => $request->phone,
-          'telegram' => $request->telegram,
-          'date_birth' => Carbon::parse($request->date_birth)->addDay()->format('Y-m-d'),
-        ]);
-
-      return response()->json($updatedData);
-    }
-
     public function uploadAvatar(int $user_id, Request $request, SaveImageAction $saveImageAction)
     {
         $user = User::find($user_id);
@@ -78,4 +57,34 @@ class ProfileController extends Controller
             'avatar' => $path,
         ]);
     }
+
+  /**
+   * Обновление данных профиля
+   *
+   * @param Request $request
+   * @return JsonResponse
+   */
+  public function updateProfile(Request $request): JsonResponse
+  {
+      $request->validate([
+             'position'     => 'required|string',
+             'departament'  => 'required|string',
+             'about'        => 'required|string',
+             'phone'        => 'required|string',
+             'telegram'     => 'required|string',
+             'date_birth'   => 'required|string',
+         ]);
+
+    $updatedData = User::where('id', Auth::user()->id)
+      ->update([
+        'position' => $request->position,
+        'departament' => $request->departament,
+        'about' => $request->about,
+        'phone' => $request->phone,
+        'telegram' => $request->telegram,
+        'date_birth' => Carbon::parse($request->date_birth)->addDay()->format('Y-m-d'),
+      ]);
+
+    return response()->json($updatedData);
+  }
 }
