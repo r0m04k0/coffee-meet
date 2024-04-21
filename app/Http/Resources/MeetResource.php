@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class MeetResource extends JsonResource
 {
@@ -26,17 +27,46 @@ class MeetResource extends JsonResource
                 "updated_at" => $this->updated_at,
             ],
             "user" => [
-                ...$this->first_user->toArray(),
-                "duration" => $this->first_duration->duration ?? null,
-                "date_and_time" => $this->first_date_and_time,
-                "is_online" => $this->first_is_online,
+                $this->getUser('user')
             ],
             "colleague" => [
-                ...$this->second_user->toArray(),
-                "duration" => $this->first_duration->duration  ?? null,
-                "date_and_time" => $this->first_date_and_time,
-                "is_online" => $this->first_is_online,
+                $this->getUser('colleague')
             ],
+        ];
+    }
+
+    public function getUser(string $type)
+    {
+        $user = Auth::user();
+        if ($type == 'user') {
+            if ($user->id == $this->first_user->id) {
+                return $this->getFirstUser();
+            }
+            return $this->getSecondUser();
+        }
+        if ($user->id == $this->first_user->id) {
+            return $this->getSecondUser();
+        }
+        return $this->getFirstUser();
+    }
+
+    public function getFirstUser(): array
+    {
+        return [
+            ...$this->first_user->toArray(),
+            "duration" => $this->first_duration->duration ?? null,
+            "date_and_time" => $this->first_date_and_time,
+            "is_online" => $this->first_is_online,
+        ];
+    }
+
+    public function getSecondUser(): array
+    {
+        return [
+            ...$this->second_user->toArray(),
+            "duration" => $this->second_duration->duration  ?? null,
+            "date_and_time" => $this->second_date_and_time,
+            "is_online" => $this->second_is_online,
         ];
     }
 }

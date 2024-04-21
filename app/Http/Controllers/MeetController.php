@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\MeetResource;
+use App\Models\Duration;
 use App\Models\Meet;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -54,14 +56,14 @@ class MeetController extends Controller
     public function confirmMeet(Request $request): JsonResponse
     {
         $request->validate([
-            'duration'      => 'required|number',
+            'duration'      => 'required|string',
             'date_and_time' => 'required|string',
             'is_online'     => 'required|bool',
         ]);
 
-        $updatedData = $this->meet->update([
-            'duration'      => $request->duration,
-            'date_and_time' => $request->date_and_time,
+        $updatedData = $this->getActiveMeet()->update([
+            'duration'      => Duration::where('duration', $request->duration)->first()->id,
+            'date_and_time' => Carbon::parse($request->date_and_time),
             'is_online'     => $request->is_online,
         ]);
 
