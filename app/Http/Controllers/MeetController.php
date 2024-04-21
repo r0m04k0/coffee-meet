@@ -126,4 +126,14 @@ class MeetController extends Controller
 
         return response()->json(new MeetResource($meet));
     }
+
+    public function cancelMeet(): JsonResponse
+    {
+        $meet = $this->getActiveMeet();
+        $meet->update([
+            'is_done' => true,
+            'is_archive' => true
+        ]);
+        return response()->json(new MeetResource($meet));
+    }
 }

@@ -32,6 +32,8 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::get('/meet', [MeetController::class, 'getMeetInfo']);
   Route::post('/meet', [MeetController::class, 'confirmMeet']);
   Route::post('/feedback', [FeedbackMeetController::class, 'storeFeedback']);
+  Route::post('/cancel', [MeetController::class, 'cancelMeet']);
+
 });
 
 Route::post('/upload/{user_id}', [ProfileController::class, 'uploadAvatar']);
