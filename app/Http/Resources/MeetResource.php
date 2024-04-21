@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
@@ -50,9 +51,10 @@ class MeetResource extends JsonResource
     {
         return [
             ...$this->first_user->toArray(),
-            "duration" => $this->first_duration->duration ?? null,
+            "duration"      => $this->first_duration->duration ?? null,
             "date_and_time" => $this->first_date_and_time,
-            "is_online" => $this->first_is_online,
+            "is_online"     => $this->first_is_online,
+            "age"           => Carbon::parse($this->first_user->birth_date)->age,
         ];
     }
 
@@ -60,9 +62,10 @@ class MeetResource extends JsonResource
     {
         return [
             ...$this->second_user->toArray(),
-            "duration" => $this->second_duration->duration  ?? null,
+            "duration"      => $this->second_duration->duration  ?? null,
             "date_and_time" => $this->second_date_and_time,
-            "is_online" => $this->second_is_online,
+            "is_online"     => $this->second_is_online,
+            "age"           => Carbon::parse($this->second_user->birth_date)->age,
         ];
     }
 }
