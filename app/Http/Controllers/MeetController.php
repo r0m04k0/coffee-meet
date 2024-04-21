@@ -58,7 +58,7 @@ class MeetController extends Controller
         $request->validate([
             'duration'      => 'required|string',
             'date_and_time' => 'required|string',
-            'is_online'     => 'required|string',
+            'is_online'     => 'required|bool',
         ]);
 
         $user = Auth::user();
