@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\MeetResource;
 use App\Models\Meet;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,11 +21,18 @@ class MeetController extends Controller
     {
         $user = Auth::user();
         $meetData = Meet::where('is_done', false)
-            ->where('user1_id', $user->id)
-            ->orWhere('user2_id', $user->id)
+            ->where(function (Builder $query) use ($user) {
+                $query->where('user1_id', $user->id)
+                    ->orWhere('user2_id', $user->id);
+            })
             ->orderBy('created_at', 'desc')
             ->first();
 
-        return response()->json(new MeetResource($meetData));
+        if ($meetData) {
+            return response()->json(new MeetResource($meetData));
+        }
+        else {
+            return response()->json(null, 404);
+        }
     }
 }

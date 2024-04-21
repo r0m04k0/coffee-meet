@@ -30,6 +30,19 @@ class Meet extends Model
         'second_feedback_meet_id',
     ];
 
+    protected $casts = [
+        'date_and_time' => 'datetime',
+        'is_done' => 'boolean',
+        'is_online' => 'boolean',
+        'is_confirmed' => 'boolean',
+        'first_date_and_time' => 'datetime',
+        'second_date_and_time' => 'datetime',
+        'first_is_confirmed' => 'boolean',
+        'second_is_confirmed' => 'boolean',
+        'first_is_online' => 'boolean',
+        'second_is_online' => 'boolean',
+    ];
+
     public function first_user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user1_id', 'id');

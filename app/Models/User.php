@@ -47,6 +47,11 @@ class User extends Authenticatable implements FilamentUser
         'is_ready',
     ];
 
+    protected $casts = [
+        'is_confirmed' => 'boolean',
+        'is_ready' => 'boolean',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *

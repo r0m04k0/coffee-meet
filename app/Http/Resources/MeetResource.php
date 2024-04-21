@@ -21,13 +21,20 @@ class MeetResource extends JsonResource
             "is_done" => $this->is_done,
             "is_confirmed" => $this->is_confirmed,
             "duration" => $this->final_duration->duration,
+            "created_at" => $this->created_at,
+            "updated_at" => $this->updated_at,
             "user" => [
-                ...$this->first_user,
-                "duration" => $this->first_duration->duration,
-                "date_and_time" => $this->,
-                "is_online" =>
+                ...$this->first_user->toArray(),
+                "duration" => $this->first_duration->duration ?? null,
+                "date_and_time" => $this->first_date_and_time,
+                "is_online" => $this->first_is_online,
             ],
-            "colleague" => $this->second_user,
+            "colleague" => [
+                ...$this->second_user->toArray(),
+                "duration" => $this->first_duration->duration  ?? null,
+                "date_and_time" => $this->first_date_and_time,
+                "is_online" => $this->first_is_online,
+            ],
         ];
     }
 }
