@@ -63,8 +63,13 @@ class Meet extends Model
         return $this->belongsTo(Duration::class, 'second_duration_id', 'id');
     }
 
-    public function final_duration()
+    public function first_feedback_meet()
     {
-        return $this->belongsTo(Duration::class, 'duration_id', 'id');
+        return $this->belongsTo(FeedbackMeet::class, 'first_feedback_id', 'id');
+    }
+
+    public function second_feedback_meet()
+    {
+        return $this->belongsTo(FeedbackMeet::class, 'second_feedback_id', 'id');
     }
 }

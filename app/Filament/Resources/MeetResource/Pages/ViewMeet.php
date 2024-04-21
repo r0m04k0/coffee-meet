@@ -45,10 +45,10 @@ class ViewMeet extends ViewRecord
                                ->boolean()
                                ->label('Подтверждено'),
                            Section::make([
-                                 Infolists\Components\TextEntry::make('first_feedback_meet_id.review')
+                                 Infolists\Components\TextEntry::make('first_feedback_meet.review')
                                      ->label('Отзыв')
                                      ->placeholder('Отсутствует'),
-                                 Infolists\Components\TextEntry::make('first_feedback_meet_id.rating')
+                                 Infolists\Components\TextEntry::make('first_feedback_meet.rating')
                                      ->label('Оценка')
                                      ->placeholder('Отсутствует'),
                          ]),
@@ -68,10 +68,10 @@ class ViewMeet extends ViewRecord
                                ->boolean()
                                ->label('Подтверждено'),
                            Section::make([
-                                 Infolists\Components\TextEntry::make('second_feedback_meet_id.review')
+                                 Infolists\Components\TextEntry::make('second_feedback_meet.review')
                                      ->label('Отзыв')
                                      ->placeholder('Отсутствует'),
-                                 Infolists\Components\TextEntry::make('second_feedback_meet_id.rating')
+                                 Infolists\Components\TextEntry::make('second_feedback_meet.rating')
                                      ->label('Оценка')
                                      ->placeholder('Отсутствует'),
                              ]),
