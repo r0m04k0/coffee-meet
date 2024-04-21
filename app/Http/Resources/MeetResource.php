@@ -26,12 +26,8 @@ class MeetResource extends JsonResource
                 "created_at" => $this->created_at,
                 "updated_at" => $this->updated_at,
             ],
-            "user" => [
-                $this->getUser('user')
-            ],
-            "colleague" => [
-                $this->getUser('colleague')
-            ],
+            "user" => $this->getUser('user'),
+            "colleague" => $this->getUser('colleague'),
         ];
     }
 
