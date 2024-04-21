@@ -23,7 +23,7 @@ class MeetResource extends JsonResource
                 "is_online" => $this->is_online,
                 "is_done" => $this->is_done,
                 "is_confirmed" => $this->is_confirmed,
-                "duration" => $this->final_duration->duration,
+                "duration" => $this->final_duration ? $this->final_duration->duration : null,
                 "created_at" => $this->created_at,
                 "updated_at" => $this->updated_at,
             ],
