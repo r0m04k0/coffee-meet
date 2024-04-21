@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\MeetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
@@ -30,6 +31,8 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::get('/get-profile-info', [ProfileController::class, 'getProfileInfo']);
   Route::post('/update-profile-info', [ProfileController::class, 'updateProfile']);
   Route::post('/change-readiness', [UserController::class, 'changeReadiness']);
+  Route::get('/meet', [MeetController::class, 'getMeet']);
+
 });
 
 Route::post('/register', [AuthController::class, 'register']);
