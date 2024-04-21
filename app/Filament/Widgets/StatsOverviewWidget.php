@@ -20,15 +20,30 @@ class StatsOverviewWidget extends BaseWidget
             Stat::make('Количество встреч за 3 дня', Meet::where('created_at', '>=', Carbon::now()->subDays(3))->count())
             ->chart(self::getCountMeetsPerThreeDaysChart())
             ->color('success'),
-            Stat::make('Количество проведенных встреч', self::getPercentageMeet() . "%"),
-            Stat::make('Среднее время ответа', '3:12'),
+            Stat::make('Количество проведенных встреч', self::getPercentageDoneMeet() . "%"),
+            Stat::make('Количество проведенных онлайн встреч', self::getPercentageOnlineMeet() . "%"),
         ];  
     }
 
-    private function getPercentageMeet(): float
+    private function getPercentageDoneMeet(): float
     {
         $totalContacts = Meet::count();
         $nonEmptyStaffIdContacts = Meet::where('is_done', true)->count();
+
+        if ($totalContacts > 0) {
+            $percentage = ($nonEmptyStaffIdContacts / $totalContacts) * 100;
+            return round($percentage);
+        } else {
+            return 0;
+        }
+    }
+
+    private function getPercentageOnlineMeet(): float
+    {
+        $totalContacts = Meet::count();
+        $nonEmptyStaffIdContacts = Meet::where('is_online', true)
+            ->where('is_done', true)
+            ->count();
 
         if ($totalContacts > 0) {
             $percentage = ($nonEmptyStaffIdContacts / $totalContacts) * 100;

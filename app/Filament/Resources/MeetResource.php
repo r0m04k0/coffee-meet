@@ -49,8 +49,9 @@ class MeetResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('date_and_time')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('first_user.email')
+                    ->searchable()
+                    ->label('Дата и время'),
+                    Tables\Columns\TextColumn::make('first_user.email')
                     ->label('Первый сотрудник'),
                 Tables\Columns\TextColumn::make('second_user.email')
                     ->label('Второй сотрудник'),
