@@ -15,14 +15,16 @@ class MeetResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
-            "date_and_time" => $this->date_and_time,
-            "is_online" => $this->is_online,
-            "is_done" => $this->is_done,
-            "is_confirmed" => $this->is_confirmed,
-            "duration" => $this->final_duration->duration,
-            "created_at" => $this->created_at,
-            "updated_at" => $this->updated_at,
+            "meet" => [
+                "id" => $this->id,
+                "date_and_time" => $this->date_and_time,
+                "is_online" => $this->is_online,
+                "is_done" => $this->is_done,
+                "is_confirmed" => $this->is_confirmed,
+                "duration" => $this->final_duration->duration,
+                "created_at" => $this->created_at,
+                "updated_at" => $this->updated_at,
+            ],
             "user" => [
                 ...$this->first_user->toArray(),
                 "duration" => $this->first_duration->duration ?? null,

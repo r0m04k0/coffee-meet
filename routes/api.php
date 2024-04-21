@@ -31,7 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::get('/get-profile-info', [ProfileController::class, 'getProfileInfo']);
   Route::post('/update-profile-info', [ProfileController::class, 'updateProfile']);
   Route::post('/change-readiness', [UserController::class, 'changeReadiness']);
-  Route::get('/meet', [MeetController::class, 'getMeet']);
+  Route::get('/meet', [MeetController::class, 'getMeetInfo']);
 
 });
 
