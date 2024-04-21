@@ -65,11 +65,11 @@ class Meet extends Model
 
     public function first_feedback_meet()
     {
-        return $this->belongsTo(FeedbackMeet::class, 'first_feedback_id', 'id');
+        return $this->belongsTo(FeedbackMeet::class, 'first_feedback_meet_id', 'id');
     }
 
     public function second_feedback_meet()
     {
-        return $this->belongsTo(FeedbackMeet::class, 'second_feedback_id', 'id');
+        return $this->belongsTo(FeedbackMeet::class, 'second_feedback_meet_id', 'id');
     }
 }
