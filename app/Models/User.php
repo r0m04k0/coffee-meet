@@ -19,7 +19,7 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        if ($this->email == 'admin@admin.ru') {
+        if (in_array($this->email, config('admin.admins'))) {
             return true;
         }
         Auth::logout();
@@ -47,11 +47,6 @@ class User extends Authenticatable implements FilamentUser
         'is_ready',
     ];
 
-    protected $casts = [
-        'is_confirmed' => 'boolean',
-        'is_ready' => 'boolean',
-    ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -69,5 +64,7 @@ class User extends Authenticatable implements FilamentUser
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_confirmed' => 'boolean',
+        'is_ready' => 'boolean',
     ];
 }
