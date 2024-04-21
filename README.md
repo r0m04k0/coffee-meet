@@ -14,31 +14,12 @@
 ```bash
 git clone
 cd
-composer install
 ```
 
 Скопируйте .env файл и измените настройки подключения к БД, если это необходимо
 
 ```bash
 cp .env.example .env
-```
-
-```bash
-php artisan key:generate
-```
-
-```bash
-php artisan storage:link
-```
-
-Провести миграции БД:
-```bash
-php artisan migrate
-```
-
-Для наполнения базы тестовыми данными необходимо запустить сидер:
-```bash
-php artisan db:seed
 ```
 
 ## Установка в докере
@@ -63,6 +44,38 @@ make up
 make shell
 ```
 
-В консоли уже можно продолжить обычную установку с шага composer install
+В консоли уже можно продолжить обычную установку:
+```bash
+composer install
+```
+
+```bash
+php artisan key:generate
+```
+
+```bash
+php artisan storage:link
+```
+
+Провести миграции БД:
+```bash
+php artisan migrate
+```
+
+Для наполнения базы тестовыми данными необходимо запустить сидер:
+```bash
+php artisan db:seed
+```
+
+Чтобы посмотреть запущенные образы, выполните команду:
+```bash
+docker ps
+```
+
+Для доступа к админпанели необходимо перейти в браузере по ссылке localhost:8000/admin
+Доступы: 
+login: admin@admin.ru
+password: password
+
 
 
