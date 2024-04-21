@@ -9,8 +9,12 @@ class GenerateMeetsAction
 {
     public function __invoke() 
     {
+        Meet::query()->update(['is_archive' => true]);
         // Получаем всех готовых пользователей и перемешиваем их
-        $users = User::where('is_ready', true)->pluck('id')->all();
+        $users = User::where('is_ready', true)
+            ->where('is_confirmed', true)
+            ->pluck('id')->all();
+
         shuffle($users);
     
         // Инициализируем индекс текущего пользователя
