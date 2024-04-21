@@ -25,18 +25,18 @@ class MeetSeeder extends Seeder
                  'is_online' => fake()->boolean(),
                  'is_confirmed' => fake()->boolean(),
                  'duration_id' => Duration::inRandomOrder()->first('id')->id,
-                 '1date_and_time' => Carbon::now(),
-                 '2date_and_time' => Carbon::now(),
+                 'first_date_and_time' => Carbon::now(),
+                 'second_date_and_time' => Carbon::now(),
                  'user1_id' => User::inRandomOrder()->first('id')->id,
                  'user2_id' => User::inRandomOrder()->first('id')->id,
-                 '1is_confirmed' => fake()->boolean(),
-                 '2is_confirmed' => fake()->boolean(),
-                 '1is_online' => fake()->boolean(),
-                 '2is_online' => fake()->boolean(),
-                 '1duration_id' => Duration::inRandomOrder()->first('id')->id,
-                 '2duration_id' => Duration::inRandomOrder()->first('id')->id,
-                 '1feedback_meet_id' => FeedbackMeet::inRandomOrder()->first('id')->id,
-                 '2feedback_meet_id' => FeedbackMeet::inRandomOrder()->first('id')->id
+                 'first_is_confirmed' => fake()->boolean(),
+                 'second_is_confirmed' => fake()->boolean(),
+                 'first_is_online' => fake()->boolean(),
+                 'second_is_online' => fake()->boolean(),
+                 'first_duration_id' => Duration::inRandomOrder()->first('id')->id,
+                 'second_duration_id' => Duration::inRandomOrder()->first('id')->id,
+                 'first_feedback_meet_id' => FeedbackMeet::inRandomOrder()->first('id')->id,
+                 'second_feedback_meet_id' => FeedbackMeet::inRandomOrder()->first('id')->id
              ]);
         }
     }

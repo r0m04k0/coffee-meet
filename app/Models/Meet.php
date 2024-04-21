@@ -16,18 +16,18 @@ class Meet extends Model
         'is_online',
         'is_confirmed',
         'duration_id',
-        '1date_and_time',
-        '2date_and_time',
+        'first_date_and_time',
+        'second_date_and_time',
         'user1_id',
         'user2_id',
-        '1is_confirmed',
-        '2is_confirmed',
-        '1is_online',
-        '2is_online',
-        '1duration_id',
-        '2duration_id',
-        '1feedback_meet_id',
-        '2feedback_meet_id',
+        'first_is_confirmed',
+        'second_is_confirmed',
+        'first_is_online',
+        'second_is_online',
+        'first_duration_id',
+        'second_duration_id',
+        'first_feedback_meet_id',
+        'second_feedback_meet_id',
     ];
 
     public function first_user(): BelongsTo
@@ -42,12 +42,12 @@ class Meet extends Model
 
     public function first_duration(): BelongsTo
     {
-        return $this->belongsTo(Duration::class, '1duration_id', 'id');
+        return $this->belongsTo(Duration::class, 'first_duration_id', 'id');
     }
 
     public function second_duration(): BelongsTo
     {
-        return $this->belongsTo(Duration::class, '2duration_id', 'id');
+        return $this->belongsTo(Duration::class, 'second_duration_id', 'id');
     }
 
     public function final_duration()

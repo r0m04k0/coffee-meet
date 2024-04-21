@@ -36,19 +36,19 @@ class ViewMeet extends ViewRecord
                             Infolists\Components\TextEntry::make('first_user.patronymic')->label('Отчество'),
                            Infolists\Components\TextEntry::make('first_user.email')->label('Почта'),
 
-                           Infolists\Components\TextEntry::make('1date_and_time')->label('Выбранные дата и время'),
+                           Infolists\Components\TextEntry::make('first_date_and_time')->label('Выбранные дата и время'),
                            Infolists\Components\TextEntry::make('first_duration.duration')->label('Длительность'),
-                           Infolists\Components\IconEntry::make('1is_online')
+                           Infolists\Components\IconEntry::make('first_is_online')
                                ->boolean()
                                ->label('Онлайн'),
-                           Infolists\Components\IconEntry::make('1is_confirmed')
+                           Infolists\Components\IconEntry::make('first_is_confirmed')
                                ->boolean()
                                ->label('Подтверждено'),
                            Section::make([
-                                 Infolists\Components\TextEntry::make('1feedback_meet_id.review')
+                                 Infolists\Components\TextEntry::make('first_feedback_meet_id.review')
                                      ->label('Отзыв')
                                      ->placeholder('Отсутствует'),
-                                 Infolists\Components\TextEntry::make('1feedback_meet_id.rating')
+                                 Infolists\Components\TextEntry::make('first_feedback_meet_id.rating')
                                      ->label('Оценка')
                                      ->placeholder('Отсутствует'),
                          ]),
@@ -59,19 +59,19 @@ class ViewMeet extends ViewRecord
                            Infolists\Components\TextEntry::make('second_user.patronymic')->label('Отчество'),
                            Infolists\Components\TextEntry::make('second_user.email')->label('Почта'),
 
-                           Infolists\Components\TextEntry::make('2date_and_time')->label('Выбранные дата и время'),
+                           Infolists\Components\TextEntry::make('second_date_and_time')->label('Выбранные дата и время'),
                            Infolists\Components\TextEntry::make('second_duration.duration')->label('Длительность'),
-                           Infolists\Components\IconEntry::make('2is_online')
+                           Infolists\Components\IconEntry::make('second_is_online')
                                ->boolean()
                                ->label('Онлайн'),
-                           Infolists\Components\IconEntry::make('2is_confirmed')
+                           Infolists\Components\IconEntry::make('second_is_confirmed')
                                ->boolean()
                                ->label('Подтверждено'),
                            Section::make([
-                                 Infolists\Components\TextEntry::make('2feedback_meet_id.review')
+                                 Infolists\Components\TextEntry::make('second_feedback_meet_id.review')
                                      ->label('Отзыв')
                                      ->placeholder('Отсутствует'),
-                                 Infolists\Components\TextEntry::make('2feedback_meet_id.rating')
+                                 Infolists\Components\TextEntry::make('second_feedback_meet_id.rating')
                                      ->label('Оценка')
                                      ->placeholder('Отсутствует'),
                              ]),
