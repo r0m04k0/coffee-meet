@@ -73,7 +73,7 @@ class MeetController extends Controller
         $is_online = boolval($request->is_online);
 
         // Для первого пользователя
-        if ($meet->first_user()->id == $user->id) {
+        if ($meet->first_user->id == $user->id) {
             $meet->update([
                   'first_duration_id' => $duration ? $duration->id : null,
                   'first_date_and_time' => $date_and_time,
@@ -95,7 +95,7 @@ class MeetController extends Controller
                 }
             }
         }
-        else if ($meet->second_user()->id == $user->id) {
+        else if ($meet->second_user->id == $user->id) {
             $meet->update([
                   'second_duration_id' => $duration ? $duration->id : null,
                   'second_date_and_time' => $date_and_time,
